@@ -3,7 +3,6 @@ import streamlit as st
 import pandas as pd
 import requests
 import plotly.express as px
-from env_var import *
 from scraper import pull_reviews, clean_text, extract_asin
 import time
 
@@ -26,7 +25,7 @@ with st.sidebar:
 st.subheader("📥 Input Product Reviews")
 user_input = st.text_input(label="Paste the target Product URL from Amazon.in only", value="", max_chars=None, key=None, type="default", help=None, autocomplete=None)
 
-API_URL = zero_shot_model  # default; reassigned before each analysis stage
+API_URL = st.secrets["zero_shot_model"]  # default; reassigned before each analysis stage
 headers = {
     "Authorization": f"Bearer {hf_token}",
 }
@@ -70,7 +69,7 @@ if st.button("🚀 Analyze Sentiment Pulse"):
         text = df_req2['cleaned_text'].unique()
         # 2. Aspect-Based Classification
         st.subheader("📊 Aspect-Based Classification is being processed...")
-        API_URL = zero_shot_model
+        API_URL = st.secrets["zero_shot_model"]
         output_list = []
         for item in text:
             output_class = query({
@@ -93,7 +92,7 @@ if st.button("🚀 Analyze Sentiment Pulse"):
         st.dataframe(df_average)
         # sentiment analysis
         st.subheader("📊 Abstract Sentiment Analysis")
-        API_URL = sentiment_model
+        API_URL = st.secrets["sentiment_model"]
         final_list = []
         for item in df_req2['cleaned_text'].unique():
             output = query({"inputs": item,})
@@ -109,7 +108,7 @@ if st.button("🚀 Analyze Sentiment Pulse"):
         st.dataframe(df_pivoted)
 
         st.subheader("📊 Overall Sentiment Analysis")
-        API_URL = sentiment_analyzer
+        API_URL = st.secrets["sentiment_model"]
 
         output_list = []
         for item in text:
