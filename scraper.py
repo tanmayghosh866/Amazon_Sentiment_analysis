@@ -35,7 +35,7 @@ def pull_reviews(url_input):
     ASIN = extract_asin(prod_url)
     st.write(ASIN)
 
-    client = ApifyClient({st.secrets['apify_key']})
+    client = ApifyClient(st.secrets['apify_key'])
 
     # Prepare the Actor input
     run_input = {
