@@ -2,3 +2,4 @@ streamlit
 pandas
 requests
 plotly
+apify_client
