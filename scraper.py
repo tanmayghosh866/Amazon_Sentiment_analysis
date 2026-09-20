@@ -1,6 +1,5 @@
 import requests
 from apify_client import ApifyClient
-from env_var import *
 import os
 import pandas as pd
 import re
@@ -36,7 +35,7 @@ def pull_reviews(url_input):
     ASIN = extract_asin(prod_url)
     st.write(ASIN)
 
-    client = ApifyClient(f"{apify_key}")
+    client = ApifyClient({st.secrets['apify_key']})
 
     # Prepare the Actor input
     run_input = {
