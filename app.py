@@ -108,7 +108,7 @@ if st.button("🚀 Analyze Sentiment Pulse"):
         st.dataframe(df_pivoted)
 
         st.subheader("📊 Overall Sentiment Analysis")
-        API_URL = st.secrets["sentiment_model"]
+        API_URL = st.secrets["sentiment_analyzer"]
 
         output_list = []
         for item in text:
