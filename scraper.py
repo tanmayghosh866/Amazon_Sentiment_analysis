@@ -42,7 +42,7 @@ def pull_reviews(url_input):
         "productUrls": [{ "url": f"https://www.amazon.in/dp/{ASIN}" }],
         "maxReviews": 30,
         "includeGdprSensitive": False,
-        "filterByRatings": ["fourStar", "oneStar"],
+        "filterByRatings": ["fiveStar","threeStar", "oneStar"],
         "reviewsUseProductVariantFilter": False,
         "scrapeProductDetails": False,
         "reviewsAlwaysSaveCategoryData": False,
